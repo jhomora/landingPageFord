@@ -1,0 +1,96 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary position-fixed z-3 w-100">
+    <div class="container-fluid ps-5 pe-5">
+      <a class="navbar-brand" href="#">
+        <img src="https://www.ford.com.ph/content/dam/Ford/website-assets/ap/ph/home/new-logo-1.png" alt="Logo" 
+        width="100" height="40" class="d-inline-block align-text-top">
+    </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="#" 
+            data-bs-toggle="modal" data-bs-target="#exampleModal">are you interested?</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <a href="https://www.ford.com.ph/showroom/all-offers.html" target="_blank" class="btn btn-outline-primary">contact with our sales team</a>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="card text-bg-dark">
+    <img src="https://www.anahuac.mx/generacion-anahuac/sites/default/files/articles/pexels-photo-315938.jpg" 
+    class="card-img" alt="Logo" width="1351" height="610">
+    <div class="card-img-overlay">
+      <div class="container-fluid p-3">
+        <div class="row p-5">
+            <div class="col-xs-12 col-md-3 col-lg-6 pt-5">
+                <h1>Welcome Ford</h1>
+                <br>
+                <h2>
+                  Learn about everything we have for you and join our family. Where you can find the car of your dreams
+                </h2>
+                <form class="d-flex pt-5" [formGroup]="form" (ngSubmit)="validateEmail()">
+                  <div class="col-auto me-2">
+                    <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email">
+                  </div>
+                  <div class="col-auto">
+                    <button type="submit" class="btn btn-primary" >Send mail</button>
+                  </div>
+                </form>
+                <p class="mt-2">Leave your email to share all the news with you</p>
+            </div>
+            <div class="col-xs-12 col-md-3 col-lg-6 pt-5">
+                <div class="mb-2">
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/9Ck-iFAX8uQ?si=6JznP77M8I0rOQ07" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+
+  <!--modal-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Personal Information</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mt-2">Enter your information and receive a special discount</p>
+          <form [formGroup]="formInfo" (ngSubmit)="sendEmail()">
+            <div class="mb-3">
+              <input type="text" name="fullName" formControlName="fullName" class="form-control" id="" placeholder="Full name">
+              <p class="text-danger" *ngIf="formInfo.get('fullName')?.hasError('minlength')">
+                *This field must be more than 5 characters
+              </p>
+            </div>
+            <div class="mb-3">
+              <input type="email" name="email" formControlName="emailForm" [value]="form.value.email" class="form-control" id="" placeholder="Email">
+              <p class="text-danger" *ngIf="formInfo.get('emailForm')?.hasError('email')">
+                *This field must have a valid email
+              </p>
+            </div>
+            <div class="mb-3">
+              <input type="date" name="birthDate" formControlName="birthDate" class="form-control" id="" placeholder="Birth date">
+            </div>
+            <div class="mb-3">
+              <input type="text" name="phone" formControlName="phone" class="form-control" id="" placeholder="Phone number">
+              <p class="text-danger" *ngIf="formInfo.get('phone')?.hasError('maxlength')">
+                *This field must have 11 numbers or less
+              </p>
+            </div>
+            <div class="mt-2">
+              <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Close</button>
+              <button type="submit"  class="btn btn-primary" data-bs-dismiss="modal" [disabled]="!formInfo.valid" >Send data</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
